@@ -5,35 +5,31 @@ Uso: python build.py <carpeta con una subcarpeta por versión: 26.3/assets/..., 
 Por cada tema de themes.py y cada versión:
 - tiñe los grises de la interfaz con la paleta del tema (el relieve de botones y casillas se mantiene),
 - pinta la casilla seleccionada, los corazones y el cuadro de descripciones,
-- dibuja un sol propio, tiñe las fases de la luna y decora el fondo de los menús,
+- decora el fondo de los menús con un dibujito repetido (solo cambia la interfaz: el cielo, el sol y la luna quedan como en el juego),
 - crea el icono del paquete y lo guarda todo en dist/<versión>/cielo-cute-<tema>-<versión>.zip
 """
 import colorsys
 import json
-import math
 import pathlib
 import sys
 import zipfile
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from themes import THEMES
 
-PACK_VERSION = "2.0.1"
+PACK_VERSION = "2.1.0"
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {
-    "26.3": dict(mcmeta={"min_format": 97, "max_format": 97}, moon="celestial"),
-    "1.21.1": dict(mcmeta={"pack_format": 34}, moon="sheet"),
+    "26.3": dict(mcmeta={"min_format": 97, "max_format": 97}),
+    "1.21.1": dict(mcmeta={"pack_format": 34}),
 }
 GUI_LUM = [0, 55, 93, 139, 198, 255]
 ACCENT_LUM = [0, 95, 160, 215, 255]
-SUN_BRIGHTNESS = .55  # el sol se suma al cielo: más bajo conserva el color
 GROUPS = ["container", "sprites/container", "sprites/widget", "sprites/recipe_book", "sprites/advancements",
           "sprites/world_list", "sprites/server_list", "sprites/toast", "sprites/pause_menu", "sprites/dialog"]
-MOON_PHASES = ["full_moon", "waning_gibbous", "third_quarter", "waning_crescent",
-               "new_moon", "waxing_crescent", "first_quarter", "waxing_gibbous"]
 
 # Dibujitos de 5x5 (o menos) que se repiten en el fondo de los menús
 MOTIFS = {
@@ -115,66 +111,6 @@ def hue_shift(path, hue, sat_scale=1.0, light_add=0.0, reds_only=False):
     return im
 
 
-def shape_inside(kind, x, y):
-    """x, y entre -1 y 1. Formas del sol."""
-    r, t = math.hypot(x, y), math.atan2(y, x)
-    if kind == "round":
-        return r <= .82
-    if kind == "square":
-        return max(abs(x), abs(y)) <= .7
-    if kind == "heart":
-        X, Y = x * 1.25, -y * 1.25 + .25
-        return (X * X + Y * Y - 1) ** 3 - X * X * Y ** 3 <= 0
-    if kind == "star":
-        k = (math.cos(5 * (t + math.pi / 2)) + 1) / 2
-        return r <= .42 + .5 * k ** 3
-    if kind == "flower":
-        return r <= .58 + .3 * abs(math.cos(2.5 * (t + math.pi / 2)))
-    raise ValueError(kind)
-
-
-def draw_sun(kind, rim, core):
-    n = 16
-    inside = np.zeros((n, n), bool)
-    for j in range(n):
-        for i in range(n):
-            inside[j, i] = shape_inside(kind, (i + .5) / n * 2 - 1, (j + .5) / n * 2 - 1)
-    img = np.zeros((n, n, 4), np.float32)
-    img[..., 3] = 255
-    pad = np.pad(inside, 1)
-    edge = inside & ~(pad[:-2, 1:-1] & pad[2:, 1:-1] & pad[1:-1, :-2] & pad[1:-1, 2:])
-    near = ~inside & (pad[:-2, 1:-1] | pad[2:, 1:-1] | pad[1:-1, :-2] | pad[1:-1, 2:])
-    for j in range(n):
-        for i in range(n):
-            if edge[j, i]:
-                img[j, i, :3] = rim
-            elif inside[j, i]:
-                d = math.hypot(i + .5 - n / 2, j + .5 - n / 2) / (n / 2)
-                img[j, i, :3] = [c + (r_ - c) * min(d * 1.3, 1) for c, r_ in zip(core, rim)]
-            elif near[j, i]:
-                img[j, i, :3] = [v * .35 for v in rim]  # brillo suave alrededor (el sol se suma al cielo)
-    if kind != "square":
-        # Carita: los píxeles negros dejan ver el cielo (el sol se suma), así que los ojos y la sonrisa se notan
-        for x, y in [(5, 6), (10, 6), (6, 9), (7, 10), (8, 10), (9, 9)]:
-            if inside[y, x]:
-                img[y, x, :3] = 0
-        for x, y in [(4, 8), (11, 8)]:
-            if inside[y, x]:
-                img[y, x, :3] = (255, 110, 150)
-    img[..., :3] *= SUN_BRIGHTNESS
-    # En el cielo la textura se ve de cabeza, así que se voltea
-    im = Image.fromarray(img[::-1].round().astype(np.uint8), "RGBA").resize((32, 32), Image.NEAREST)
-    return im
-
-
-def tint_moon(im, color):
-    a = np.asarray(im.convert("RGBA")).astype(np.float32)
-    lum = a[..., :3] @ np.array([.299, .587, .114], np.float32) / 255
-    boost = np.clip(lum * 1.15, 0, 1)[..., None]
-    a[..., :3] = boost * np.array(color, np.float32)
-    return Image.fromarray(a.round().astype(np.uint8), "RGBA")
-
-
 def menu_tile(base, motif, motif_color, alpha, motif_alpha):
     im = Image.new("RGBA", (16, 16), (*base, alpha))
     px = im.load()
@@ -190,35 +126,41 @@ def menu_tile(base, motif, motif_color, alpha, motif_alpha):
 
 
 def pack_icon(t):
-    s = 128
-    top, bottom = np.array(t["gui"][4], np.float32), np.array(t["gui"][3], np.float32)
-    grad = top + (bottom - top) * np.linspace(0, 1, s, dtype=np.float32)[:, None, None]
-    im = Image.fromarray(np.repeat(grad, s, axis=1).astype(np.uint8), "RGB").convert("RGBA")
-    if t["menu"][1] != "none":
-        tile = menu_tile(t["gui"][4], t["menu"][1], t["gui"][3], 0, 255).resize((32, 32), Image.NEAREST)
-        for y in range(0, s, 32):
-            for x in range(0, s, 32):
-                im.alpha_composite(tile, (x, y))
-    sun = draw_sun(t["sun"][0], t["sun"][1], t["sun"][2]).transpose(Image.FLIP_TOP_BOTTOM)
-    a = np.asarray(sun).copy()
-    a[..., :3] = np.clip(a[..., :3] / SUN_BRIGHTNESS, 0, 255)
-    a[..., 3] = np.where(a[..., :3].sum(-1) > 60, 255, 0)  # en el icono el negro es transparente
-    im.alpha_composite(Image.fromarray(a).resize((64, 64), Image.NEAREST), (32, 14))
-    # Barra rápida de 5 casillas, la del medio con el color de acento
-    slot_dark, slot_mid, slot_light = (tuple(int(v) for v in ramp(t["gui"], GUI_LUM, l)) for l in (55, 139, 255))
-    for k in range(5):
-        x0, y0 = 14 + k * 20, 92
-        accent = k == 2
-        im.paste(slot_dark if not accent else tuple(int(v) for v in ramp(t["accent"], ACCENT_LUM, 95)), (x0, y0, x0 + 20, y0 + 20))
-        im.paste(slot_mid if not accent else tuple(int(v) for v in ramp(t["accent"], ACCENT_LUM, 215)), (x0 + 2, y0 + 2, x0 + 18, y0 + 18))
-        im.paste(slot_light if not accent else (255, 255, 255), (x0 + 2, y0 + 2, x0 + 4, y0 + 4))
-    return im
+    """Una ventanita de inventario con los colores del tema, sobre el fondo de sus menús."""
+    n = 32
+    base, motif, motif_color = t["menu"]
+    im = Image.new("RGBA", (n, n), (*base, 255))
+    tile = menu_tile(base, motif, motif_color, 255, 255)
+    for y in range(0, n, 16):
+        for x in range(0, n, 16):
+            im.alpha_composite(tile, (x, y))
+    d = ImageDraw.Draw(im)
+    c = {l: tuple(int(v) for v in ramp(t["gui"], GUI_LUM, l)) for l in (0, 55, 139, 198, 255)}
+    acc = {l: tuple(int(v) for v in ramp(t["accent"], ACCENT_LUM, l)) for l in (95, 215, 255)}
+    d.rectangle((4, 5, 27, 27), fill=c[0])
+    d.rectangle((5, 6, 26, 26), fill=c[198])
+    d.line((5, 6, 25, 6), fill=c[255]); d.line((5, 6, 5, 25), fill=c[255])
+    d.line((6, 26, 26, 26), fill=c[55]); d.line((26, 7, 26, 26), fill=c[55])
+    hue, sat, light = t["heart"]
+    r, g, b = colorsys.hls_to_rgb(hue / 360, .62 + light / 3, min(.9 * sat + .1, 1))
+    heart = (round(r * 255), round(g * 255), round(b * 255))
+    for x, y in [(8, 8), (10, 8), (7, 9), (8, 9), (9, 9), (10, 9), (11, 9), (8, 10), (9, 10), (10, 10), (9, 11)]:
+        d.point((x, y), fill=heart)
+    d.point((8, 9), fill=(255, 255, 255))
+    for row in range(2):
+        for col in range(3):
+            x0, y0 = 8 + col * 6, 14 + row * 6
+            accent = (row, col) == (0, 1)
+            dark, mid, light_ = (acc[95], acc[215], acc[255]) if accent else (c[55], c[139], c[255])
+            d.rectangle((x0, y0, x0 + 4, y0 + 4), fill=mid)
+            d.line((x0, y0, x0 + 4, y0), fill=dark); d.line((x0, y0, x0, y0 + 4), fill=dark)
+            d.line((x0 + 1, y0 + 4, x0 + 4, y0 + 4), fill=light_); d.line((x0 + 4, y0 + 1, x0 + 4, y0 + 4), fill=light_)
+    return im.resize((128, 128), Image.NEAREST)
 
 
 # ---------- construcción ----------
 def build(theme, version, src):
     gui_src = src / "assets/minecraft/textures/gui"
-    env_src = src / "assets/minecraft/textures/environment"
     files = {}
 
     def put(rel, im):
@@ -251,15 +193,6 @@ def build(theme, version, src):
     list_base = tuple(round(v * .7) for v in base)
     put("gui/menu_list_background.png", menu_tile(list_base, motif, motif_color, 150, 110))
     put("gui/inworld_menu_list_background.png", menu_tile(list_base, motif, motif_color, 130, 100))
-
-    sun = draw_sun(*theme["sun"])
-    if VERSIONS[version]["moon"] == "celestial":
-        put("environment/celestial/sun.png", sun)
-        for p in MOON_PHASES:
-            put(f"environment/celestial/moon/{p}.png", tint_moon(Image.open(env_src / f"celestial/moon/{p}.png"), theme["moon"]))
-    else:
-        put("environment/sun.png", sun)
-        put("environment/moon_phases.png", tint_moon(Image.open(env_src / "moon_phases.png"), theme["moon"]))
 
     # Las .mcmeta (cómo se estiran los botones y paneles) se copian tal cual
     extra = {}

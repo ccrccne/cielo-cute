@@ -1,7 +1,7 @@
 """Tarjetas de vista previa de cada variante, armadas con las texturas reales del paquete (26.3).
 
 Uso: python preview.py  -> images/variantes/<tema>.png y images/variantes.png (todas juntas)
-No son capturas del juego: muestran el inventario, la barra, los corazones, el sol y la luna del paquete.
+No son capturas del juego: muestran el inventario, un cofre, la barra, los corazones y un botón del paquete.
 """
 import io
 import pathlib
@@ -23,16 +23,6 @@ def tex(z, rel):
     return Image.open(io.BytesIO(z.read(f"assets/minecraft/textures/{rel}"))).convert("RGBA")
 
 
-def additive_on(bg, im, pos):
-    """El sol y la luna se suman al cielo, como en el juego."""
-    a = np.asarray(bg).astype(np.int32)
-    s = np.asarray(im.convert("RGB")).astype(np.int32)
-    x, y = pos
-    h, w = s.shape[:2]
-    a[y:y + h, x:x + w, :3] = np.clip(a[y:y + h, x:x + w, :3] + s, 0, 255)
-    return Image.fromarray(a.astype(np.uint8), "RGBA")
-
-
 def card(t):
     z = zipfile.ZipFile(DIST / "26.3" / f"cielo-cute-{t['id']}-{PACK_VERSION}+26.3.zip")
     W, H = 1280, 720
@@ -46,10 +36,9 @@ def card(t):
         for x in range(0, W, 64):
             layer.alpha_composite(tile, (x, y))
     im.alpha_composite(layer)
-    # sol y luna
-    im = additive_on(im, tex(z, "environment/celestial/sun.png").transpose(Image.FLIP_TOP_BOTTOM).resize((160, 160), Image.NEAREST), (930, 70))
-    for k, p in enumerate(["waxing_crescent", "first_quarter", "full_moon", "third_quarter"]):
-        im = additive_on(im, tex(z, f"environment/celestial/moon/{p}.png").resize((64, 64), Image.NEAREST), (880 + k * 72, 270))
+    # cofre del tema
+    chest = tex(z, "gui/container/generic_54.png").crop((0, 0, 176, 71)).resize((352, 142), Image.NEAREST)
+    im.alpha_composite(chest, (800, 150))
     # inventario
     inv = tex(z, "gui/container/inventory.png").crop((0, 0, 176, 166)).resize((528, 498), Image.NEAREST)
     im.alpha_composite(inv, (70, 150))
@@ -71,8 +60,8 @@ def card(t):
     col = COLLECTIONS[t["collection"]][0]
     d.text((70, 44), t["name"], font=ImageFont.truetype(FONT, 54), fill="white", stroke_width=2, stroke_fill=tuple(int(v * .5) for v in t["menu"][0]))
     d.text((72, 108), f"Cielo cute · {col}", font=ImageFont.truetype(FONT_R, 24), fill=(255, 255, 255, 220))
-    icon = Image.open(io.BytesIO(z.read("pack.png"))).convert("RGBA").resize((96, 96), Image.NEAREST)
-    im.alpha_composite(icon, (W - 126, H - 236))
+    icon = Image.open(io.BytesIO(z.read("pack.png"))).convert("RGBA").resize((128, 128), Image.NEAREST)
+    im.alpha_composite(icon, (W - 158, 18))
     return im.convert("RGB")
 
 
