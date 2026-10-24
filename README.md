@@ -1,35 +1,48 @@
-<p align="center"><img src="pack/pack.png" width="80" alt="Icono de Cielo cute"></p>
+<p align="center"><img src="publicar/avatar.png" width="96" alt="Icono de Cielo cute"></p>
 
 # Cielo cute
 
-Un paquete de texturas para Minecraft que cambia el gris de los menús por azul cielo. Los bloques y los objetos se quedan igual; solo cambia la interfaz.
+Un paquete de texturas para Minecraft que cambia el gris de los menús por colores de cielo. Ahora en **18 temas**, cada uno con su propio sol con carita, una luna a juego y un dibujito en el fondo de los menús. Los bloques y los objetos se quedan igual.
 
-![Inventario en azul cielo](images/inventario.png)
+![Las 18 variantes](images/variantes.png)
 
 ## Qué cambia
-- **Inventarios celestes**: el tuyo, los cofres, hornos, mesas y demás contenedores.
-- **Botones y menús** en azul, con los fondos de los menús en azul noche.
-- **Corazones rosados**, también los del modo extremo.
-- **Casilla dorada**: la que tienes seleccionada en la barra rápida brilla como una estrella.
-- Los avisos (como "receta desbloqueada") y las descripciones de los objetos, a juego.
+- **Inventarios y contenedores**: el tuyo, cofres, hornos, mesas, yunque, aldeanos y demás. Se conserva el relieve; solo cambian los colores.
+- **Botones y menús**, con un fondo decorado según el tema (estrellas, corazones, flores, hojas, nubes, burbujas…).
+- **Barra rápida** del color del tema y **casilla seleccionada** en un color de acento.
+- **Corazones** a juego, también los del modo extremo.
+- **Sol con carita**: redondo, corazón, estrella o flor según el tema.
+- **Luna** teñida, con sus ocho fases.
 
-![Barra rápida dorada y corazones rosados](images/hud.png)
-![Menú de pausa con botones azules](images/menu.png)
+## Los temas
+| Colección | Temas |
+|---|---|
+| Pastel Dreams | Cielo, Algodón de azúcar, Lavanda, Menta, Mantequilla, Nube, Océano |
+| Celestial | Medianoche, Luna y constelaciones, Galaxia, Aurora boreal |
+| Fantasy | Ópalo, Arcoíris pastel, Cereza |
+| Minimal Elegance | Perla, Elegancia |
+| Golden Hour | Atardecer melocotón, Amanecer |
+
+Cada tema es un zip aparte. Para cambiar de tema, activa otro en el menú de paquetes (uno a la vez).
 
 ## Instalación
-1. Descarga `cielo-cute-1.0.0.zip` de [Releases](https://github.com/ccrccne/cielo-cute/releases). No hace falta descomprimirlo.
-2. En Minecraft ve a **Opciones → Paquetes de recursos → Abrir carpeta de paquetes** y pon el zip ahí.
+1. Descarga el zip del tema que quieras desde [Releases](https://github.com/ccrccne/cielo-cute/releases). El nombre termina en tu versión: `+26.3` o `+1.21.1`.
+2. En Minecraft ve a **Opciones → Paquetes de recursos → Abrir carpeta de paquetes** y pon el zip ahí, sin descomprimir.
 3. Pásalo a la columna de la derecha y pulsa **Listo**.
 
-Hecho para **Minecraft 26.3**. Funciona junto a otros paquetes; si uno de ellos también cambia la interfaz, deja Cielo cute más arriba en la lista.
+Funciona en **Minecraft 26.3** y **1.21 / 1.21.1** (Java). No cambia el degradado del cielo: eso lo controla el juego y un paquete de recursos solo no puede tocarlo.
 
-## Cómo se hizo
-Las texturas salen de un script ([`build.py`](build.py)) que toma las originales del juego y cambia cada tono de gris por su azul equivalente, así el relieve de los botones y las casillas se mantiene. Para volver a generarlas hace falta tener Python y Pillow:
+## Cómo se hace
+Todo sale de dos scripts de Python (necesitan Pillow y NumPy):
+- [`themes.py`](themes.py): las paletas, formas del sol, dibujitos y colecciones de cada tema.
+- [`build.py`](build.py): toma las texturas originales del juego y genera un zip por tema y versión. Comprueba que los títulos de los inventarios y el texto de los botones sigan siendo legibles.
+- [`preview.py`](preview.py): arma las tarjetas de vista previa.
+
 ```bash
-python build.py <carpeta con las texturas del juego>
+python build.py <carpeta con 26.3/assets/... y 1.21.1/assets/...>
 ```
 
 ## Licencia
-El script `build.py` es [MIT](LICENSE). Las texturas están basadas en las originales de Minecraft, propiedad de Mojang.
+Los scripts son [MIT](LICENSE). Las texturas son recoloreos de las originales de Minecraft, propiedad de Mojang. No es un producto oficial de Minecraft; no está aprobado ni asociado con Mojang o Microsoft.
 
-Hecho por **ccrccne** · [ccrccne.github.io](https://ccrccne.github.io)
+Hecho por **ccrccne** · [ccrccne.github.io](https://ccrccne.github.io) · [Ko-fi](https://ko-fi.com/ccrccne)
