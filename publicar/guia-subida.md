@@ -22,13 +22,13 @@ Todo lo necesario está en esta carpeta y en `dist/`:
 4. **Description**: pega todo el bloque "English" y luego "Español" de `descripcion.md`.
 5. **Icon**: `publicar/avatar.png`.
 6. **Categorías**: elige las que digan GUI, Themed y Simplistic (o las más parecidas que aparezcan). Resolución: 16x. Licencia: **MIT**.
-7. **Gallery**: sube las 18 imágenes de `publicar/galeria/` (título = nombre del tema). Marca `cielo.png` como destacada.
+7. **Gallery**: sube las 18 imágenes de `publicar/galeria/` (título = nombre del tema). Marca `sky-blue.png` como destacada.
 8. **Versions**: una versión por zip.
-   - Nombre: `Cielo 2.0.0 (26.3)` / `Cielo 2.0.0 (1.21.1)`, etc.
-   - Número de versión: `2.0.0+cielo-26.3`, `2.0.0+cielo-1.21.1`, … (tiene que ser distinto en cada una).
+   - Nombre: `Sky Blue 2.0.1 (26.3)` / `Sky Blue 2.0.1 (1.21.1)`, etc.
+   - Número de versión: `2.0.1+sky-blue-26.3`, `2.0.1+sky-blue-1.21.1`, … (tiene que ser distinto en cada una).
    - Versiones del juego: los zips de `dist/26.3` → **26.3**; los de `dist/1.21.1` → **1.21** y **1.21.1**.
    - Loader: **Minecraft** (resource pack).
-   - Changelog: "2.0.0: 18 temas de color, sol con carita, luna a juego y fondos decorados."
+   - Changelog: "2.0.1: 18 temas de color con nombres nuevos, sol con carita, luna a juego y fondos decorados."
 9. En **Moderation / AI disclosure**, marca la casilla de contenido generado con IA.
 10. Envía a revisión.
 
@@ -42,7 +42,7 @@ Todo lo necesario está en esta carpeta y en `dist/`:
 6. Licencia: MIT.
 7. Imágenes: las de `publicar/galeria/`.
 8. Archivos: sube los 36 zips al **mismo proyecto**.
-   - Nombre visible: `Cielo cute 2.0.0 – Cielo (26.3)`, `Cielo cute 2.0.0 – Cotton Candy (1.21.1)`, etc.
+   - Nombre visible: `Cielo cute 2.0.1 – Sky Blue (26.3)`, `Cielo cute 2.0.1 – Cotton Candy (1.21.1)`, etc.
    - Versión del juego según la carpeta, como en Modrinth.
    - Tipo: Release.
    - Changelog: el mismo de arriba.

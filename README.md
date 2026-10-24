@@ -17,11 +17,11 @@ Un paquete de texturas para Minecraft que cambia el gris de los menús por color
 ## Los temas
 | Colección | Temas |
 |---|---|
-| Pastel Dreams | Cielo, Algodón de azúcar, Lavanda, Menta, Mantequilla, Nube, Océano |
-| Celestial | Medianoche, Luna y constelaciones, Galaxia, Aurora boreal |
-| Fantasy | Ópalo, Arcoíris pastel, Cereza |
-| Minimal Elegance | Perla, Elegancia |
-| Golden Hour | Atardecer melocotón, Amanecer |
+| Pastel Dreams | Sky Blue, Cotton Candy, Lavender Dream, Mint Breeze, Honey Butter, Cloud Nine, Ocean Bubbles |
+| Celestial | Starry Night, Moondust, Pink Galaxy, Aurora |
+| Fantasy | Mermaid Opal, Candy Rainbow, Cherry Blossom |
+| Minimal Elegance | Rose Pearl, Latte |
+| Golden Hour | Peach Sunset, First Light |
 
 Cada tema es un zip aparte. Para cambiar de tema, activa otro en el menú de paquetes (uno a la vez).
 

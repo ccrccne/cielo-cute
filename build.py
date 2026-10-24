@@ -20,7 +20,7 @@ from PIL import Image
 
 from themes import THEMES
 
-PACK_VERSION = "2.0.0"
+PACK_VERSION = "2.0.1"
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {

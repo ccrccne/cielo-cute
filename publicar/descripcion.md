@@ -21,11 +21,11 @@ Cielo cute gives Minecraft's interface a soft, cozy makeover. Inventories, chest
 ### 18 themes in 5 collections
 | Collection | Themes |
 |---|---|
-| Pastel Dreams | Sky (the original), Cotton Candy, Lavender, Mint, Butter, Cloud, Ocean |
-| Celestial | Midnight, Moon & Constellations, Galaxy, Northern Lights |
-| Fantasy | Opal, Pastel Rainbow, Cherry |
-| Minimal Elegance | Pearl, Elegance |
-| Golden Hour | Peach Sunset, Sunrise |
+| Pastel Dreams | Sky Blue, Cotton Candy, Lavender Dream, Mint Breeze, Honey Butter, Cloud Nine, Ocean Bubbles |
+| Celestial | Starry Night, Moondust, Pink Galaxy, Aurora |
+| Fantasy | Mermaid Opal, Candy Rainbow, Cherry Blossom |
+| Minimal Elegance | Rose Pearl, Latte |
+| Golden Hour | Peach Sunset, First Light |
 
 Each theme is a separate file. Download the one you like (or several) from the Versions / Files tab.
 
@@ -71,11 +71,11 @@ Cielo cute le da a la interfaz de Minecraft un cambio suave y acogedor. Los inve
 ### 18 temas en 5 colecciones
 | Colección | Temas |
 |---|---|
-| Pastel Dreams | Cielo (el original), Algodón de azúcar, Lavanda, Menta, Mantequilla, Nube, Océano |
-| Celestial | Medianoche, Luna y constelaciones, Galaxia, Aurora boreal |
-| Fantasy | Ópalo, Arcoíris pastel, Cereza |
-| Minimal Elegance | Perla, Elegancia |
-| Golden Hour | Atardecer melocotón, Amanecer |
+| Pastel Dreams | Sky Blue, Cotton Candy, Lavender Dream, Mint Breeze, Honey Butter, Cloud Nine, Ocean Bubbles |
+| Celestial | Starry Night, Moondust, Pink Galaxy, Aurora |
+| Fantasy | Mermaid Opal, Candy Rainbow, Cherry Blossom |
+| Minimal Elegance | Rose Pearl, Latte |
+| Golden Hour | Peach Sunset, First Light |
 
 ### Compatibilidad
 - **Java Edition 26.3** y **1.21 / 1.21.1**. Elige el archivo que termina con tu versión.
