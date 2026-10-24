@@ -1,4 +1,4 @@
-# Cielo cute
+# Cozy GUI
 
 **Resumen (una frase, sin formato):**
 A cozy resource pack that recolors only Minecraft's interface (menus, inventories, hotbar and hearts) in 18 pastel and night-sky color themes.
@@ -7,7 +7,7 @@ A cozy resource pack that recolors only Minecraft's interface (menus, inventorie
 
 ## English
 
-Cielo cute gives Minecraft's interface a soft, cozy makeover. Inventories, chests, furnaces, buttons and menus change from plain grey to the colors of your favorite sky, and each theme adds a little pattern to the menu background. Blocks, items and mobs stay exactly as they are.
+Cozy GUI gives Minecraft's interface a soft, cozy makeover. Inventories, chests, furnaces, buttons and menus change from plain grey to the colors of your favorite sky, and each theme adds a little pattern to the menu background. Blocks, items and mobs stay exactly as they are.
 
 ### What changes
 - **Every container screen**: your inventory, chests, furnaces, crafting table, anvil, brewing stand, villager trades and more. The bevels and slot shading are kept, only the colors change.
@@ -31,7 +31,7 @@ Each theme is a separate file. Download the one you like (or several) from the V
 - **Java Edition 26.3** and **1.21 / 1.21.1**. Pick the file whose name ends in your version.
 - No mods needed. Tested in-game on 26.3 (vanilla resources + Fabric). Other loaders and Sodium/Iris don't touch these textures, so it should work there too. Screens added by mods keep their own colors.
 - Not for Bedrock Edition.
-- If another pack also changes the interface, put Cielo cute above it in the list.
+- If another pack also changes the interface, put Cozy GUI above it in the list.
 - Inventory titles are drawn in dark grey by the game; every theme keeps the panel light enough for them to stay readable, and buttons dark enough for white text.
 
 ### Installation
@@ -39,7 +39,7 @@ Each theme is a separate file. Download the one you like (or several) from the V
 2. In Minecraft: Options → Resource Packs → Open Pack Folder, and drop the .zip there.
 3. Move it to the right column and click Done.
 
-To switch themes, just enable a different one. Only one Cielo cute theme should be active at a time.
+To switch themes, just enable a different one. Only one Cozy GUI theme should be active at a time.
 
 ### FAQ
 **Can I use it in videos or modpacks?** Yes. Credit with a link to this page is appreciated.
@@ -53,7 +53,7 @@ Made by ccrccne. The textures are recolors of Minecraft's original textures, gen
 
 ## Español
 
-Cielo cute le da a la interfaz de Minecraft un cambio suave y acogedor. Los inventarios, cofres, hornos, botones y menús pasan del gris a los colores de tu cielo favorito, y cada tema agrega un dibujito en el fondo de los menús. Los bloques, objetos y criaturas se quedan igual.
+Cozy GUI le da a la interfaz de Minecraft un cambio suave y acogedor. Los inventarios, cofres, hornos, botones y menús pasan del gris a los colores de tu cielo favorito, y cada tema agrega un dibujito en el fondo de los menús. Los bloques, objetos y criaturas se quedan igual.
 
 ### Qué cambia
 - **Todas las pantallas de contenedores**: inventario, cofres, hornos, mesa de crafteo, yunque, soporte de pociones, aldeanos y más. Se conserva el relieve; solo cambian los colores.

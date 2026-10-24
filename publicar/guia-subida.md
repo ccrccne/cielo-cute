@@ -1,4 +1,4 @@
-# Cómo subir Cielo cute a Modrinth y CurseForge
+# Cómo subir Cozy GUI a Modrinth y CurseForge
 
 Todo lo necesario está en esta carpeta y en `dist/`:
 
@@ -17,32 +17,32 @@ Todo lo necesario está en esta carpeta y en `dist/`:
 ## Modrinth
 
 1. modrinth.com → **Create a project** → tipo **Resource Pack**.
-2. Nombre: `Cielo cute`. URL sugerida: `cielo-cute`.
+2. Nombre: `Cozy GUI`. URL sugerida: `cozy-gui`.
 3. Resumen: la frase de `descripcion.md`.
 4. **Description**: pega todo el bloque "English" y luego "Español" de `descripcion.md`.
 5. **Icon**: `publicar/avatar.png`.
 6. **Categorías**: elige las que digan GUI, Themed y Simplistic (o las más parecidas que aparezcan). Resolución: 16x. Licencia: **MIT**.
 7. **Gallery**: sube las 18 imágenes de `publicar/galeria/` (título = nombre del tema). Marca `sky-blue.png` como destacada.
 8. **Versions**: una versión por zip.
-   - Nombre: `Sky Blue 2.1.0 (26.3)` / `Sky Blue 2.1.0 (1.21.1)`, etc.
-   - Número de versión: `2.1.0+sky-blue-26.3`, `2.1.0+sky-blue-1.21.1`, … (tiene que ser distinto en cada una).
+   - Nombre: `Sky Blue 2.1.1 (26.3)` / `Sky Blue 2.1.1 (1.21.1)`, etc.
+   - Número de versión: `2.1.1+sky-blue-26.3`, `2.1.1+sky-blue-1.21.1`, … (tiene que ser distinto en cada una).
    - Versiones del juego: los zips de `dist/26.3` → **26.3**; los de `dist/1.21.1` → **1.21** y **1.21.1**.
    - Loader: **Minecraft** (resource pack).
-   - Changelog: "2.1.0: nuevo icono y capturas nuevas."
+   - Changelog: "2.1.1: nuevo icono y capturas nuevas."
 9. En **Moderation / AI disclosure**, marca la casilla de contenido generado con IA.
 10. Envía a revisión.
 
 ## CurseForge
 
 1. curseforge.com → Create Project → **Minecraft → Resource Packs**.
-2. Nombre: `Cielo cute`. Resumen: la frase de `descripcion.md`.
+2. Nombre: `Cozy GUI`. Resumen: la frase de `descripcion.md`.
 3. Descripción: bloque "English" (y si quieres "Español") de `descripcion.md`. El enlace de Ko-fi va al final.
 4. Avatar: `publicar/avatar.png`.
 5. Categorías: **Miscellaneous**, **16x** (son texturas al tamaño original).
 6. Licencia: MIT.
 7. Imágenes: las de `publicar/galeria/`.
 8. Archivos: sube los 36 zips al **mismo proyecto**.
-   - Nombre visible: `Cielo cute 2.1.0 – Sky Blue (26.3)`, `Cielo cute 2.1.0 – Cotton Candy (1.21.1)`, etc.
+   - Nombre visible: `Cozy GUI 2.1.1 – Sky Blue (26.3)`, `Cozy GUI 2.1.1 – Cotton Candy (1.21.1)`, etc.
    - Versión del juego según la carpeta, como en Modrinth.
    - Tipo: Release.
    - Changelog: el mismo de arriba.

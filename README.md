@@ -1,6 +1,6 @@
-<p align="center"><img src="publicar/avatar.png" width="96" alt="Icono de Cielo cute"></p>
+<p align="center"><img src="publicar/avatar.png" width="96" alt="Icono de Cozy GUI"></p>
 
-# Cielo cute
+# Cozy GUI
 
 Un paquete de texturas para Minecraft que cambia el gris de los menús por colores de cielo. Ahora en **18 temas**, cada uno con un dibujito en el fondo de los menús. Los bloques y los objetos se quedan igual.
 
@@ -24,7 +24,7 @@ Un paquete de texturas para Minecraft que cambia el gris de los menús por color
 Cada tema es un zip aparte. Para cambiar de tema, activa otro en el menú de paquetes (uno a la vez).
 
 ## Instalación
-1. Descarga el zip del tema que quieras desde [Releases](https://github.com/ccrccne/cielo-cute/releases). El nombre termina en tu versión: `+26.3` o `+1.21.1`.
+1. Descarga el zip del tema que quieras desde [Releases](https://github.com/ccrccne/cozy-gui/releases). El nombre termina en tu versión: `+26.3` o `+1.21.1`.
 2. En Minecraft ve a **Opciones → Paquetes de recursos → Abrir carpeta de paquetes** y pon el zip ahí, sin descomprimir.
 3. Pásalo a la columna de la derecha y pulsa **Listo**.
 

@@ -1,4 +1,4 @@
-"""Genera todas las variantes de Cielo cute a partir de las texturas originales de Minecraft.
+"""Genera todas las variantes de Cozy GUI a partir de las texturas originales de Minecraft.
 
 Uso: python build.py <carpeta con una subcarpeta por versión: 26.3/assets/..., 1.21.1/assets/...>
 
@@ -6,7 +6,7 @@ Por cada tema de themes.py y cada versión:
 - tiñe los grises de la interfaz con la paleta del tema (el relieve de botones y casillas se mantiene),
 - pinta la casilla seleccionada, los corazones y el cuadro de descripciones,
 - decora el fondo de los menús con un dibujito repetido,
-- crea el icono del paquete y lo guarda todo en dist/<versión>/cielo-cute-<tema>-<versión>.zip
+- crea el icono del paquete y lo guarda todo en dist/<versión>/cozy-gui-<tema>-<versión>.zip
 """
 import colorsys
 import json
@@ -19,7 +19,7 @@ from PIL import Image, ImageDraw
 
 from themes import THEMES
 
-PACK_VERSION = "2.1.0"
+PACK_VERSION = "2.1.1"
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {
@@ -201,14 +201,14 @@ def build(theme, version, src):
         if rel[:-len(".mcmeta")] in files:
             extra[rel] = f.read_bytes()
 
-    desc = f"§bCielo cute §e✦ §f{theme['name']}\n§7por ccrccne"
+    desc = f"§bCozy GUI §e✦ §f{theme['name']}\n§7por ccrccne"
     mcmeta = {"pack": {"description": desc, **VERSIONS[version]["mcmeta"]}}
-    out = DIST / version / f"cielo-cute-{theme['id']}-{PACK_VERSION}+{version}.zip"
+    out = DIST / version / f"cozy-gui-{theme['id']}-{PACK_VERSION}+{version}.zip"
     out.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("pack.mcmeta", json.dumps(mcmeta, ensure_ascii=False, indent=4))
         z.write(ROOT / "LICENSE", "LICENSE.txt")
-        z.writestr("CREDITOS.txt", "Cielo cute por ccrccne - https://ccrccne.github.io\n"
+        z.writestr("CREDITOS.txt", "Cozy GUI por ccrccne - https://ccrccne.github.io\n"
                    "Texturas basadas en las originales de Minecraft (Mojang), recoloreadas con build.py.\n"
                    "No es un producto oficial de Minecraft. No está aprobado ni asociado con Mojang o Microsoft.\n")
         icon = pack_icon(theme)

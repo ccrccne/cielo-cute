@@ -24,7 +24,7 @@ def tex(z, rel):
 
 
 def card(t):
-    z = zipfile.ZipFile(DIST / "26.3" / f"cielo-cute-{t['id']}-{PACK_VERSION}+26.3.zip")
+    z = zipfile.ZipFile(DIST / "26.3" / f"cozy-gui-{t['id']}-{PACK_VERSION}+26.3.zip")
     W, H = 1280, 720
     top, bottom = np.array(t["menu"][0], np.float32) * .55, np.array(t["gui"][2], np.float32)
     grad = top + (bottom - top) * np.linspace(0, 1, H, dtype=np.float32)[:, None, None]
@@ -59,7 +59,7 @@ def card(t):
     # textos
     col = COLLECTIONS[t["collection"]][0]
     d.text((70, 44), t["name"], font=ImageFont.truetype(FONT, 54), fill="white", stroke_width=2, stroke_fill=tuple(int(v * .5) for v in t["menu"][0]))
-    d.text((72, 108), f"Cielo cute · {col}", font=ImageFont.truetype(FONT_R, 24), fill=(255, 255, 255, 220))
+    d.text((72, 108), f"Cozy GUI · {col}", font=ImageFont.truetype(FONT_R, 24), fill=(255, 255, 255, 220))
     icon = Image.open(io.BytesIO(z.read("pack.png"))).convert("RGBA").resize((128, 128), Image.NEAREST)
     im.alpha_composite(icon, (W - 158, 18))
     return im.convert("RGB")

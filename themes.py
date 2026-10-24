@@ -1,4 +1,4 @@
-"""Las variantes de color de Cielo cute.
+"""Las variantes de color de Cozy GUI.
 
 Cada tema define:
 - gui: colores para los grises de la interfaz, de oscuro a claro (luminosidad 0, 55, 93, 139, 198, 255 del original)
