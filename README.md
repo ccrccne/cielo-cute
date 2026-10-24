@@ -2,7 +2,7 @@
 
 # Cielo cute
 
-Un paquete de texturas para Minecraft que cambia el gris de los menús por colores de cielo. Ahora en **18 temas**, cada uno con un dibujito en el fondo de los menús. Solo cambia la interfaz: los bloques, los objetos, el cielo, el sol y la luna se quedan igual.
+Un paquete de texturas para Minecraft que cambia el gris de los menús por colores de cielo. Ahora en **18 temas**, cada uno con un dibujito en el fondo de los menús. Los bloques y los objetos se quedan igual.
 
 ![Las 18 variantes](images/variantes.png)
 
@@ -32,7 +32,7 @@ Funciona en **Minecraft 26.3** y **1.21 / 1.21.1** (Java).
 
 ## Cómo se hace
 Todo sale de dos scripts de Python (necesitan Pillow y NumPy):
-- [`themes.py`](themes.py): las paletas, formas del sol, dibujitos y colecciones de cada tema.
+- [`themes.py`](themes.py): las paletas, dibujitos y colecciones de cada tema.
 - [`build.py`](build.py): toma las texturas originales del juego y genera un zip por tema y versión. Comprueba que los títulos de los inventarios y el texto de los botones sigan siendo legibles.
 - [`preview.py`](preview.py): arma las tarjetas de vista previa.
 

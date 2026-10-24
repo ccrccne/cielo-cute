@@ -28,7 +28,7 @@ Todo lo necesario está en esta carpeta y en `dist/`:
    - Número de versión: `2.1.0+sky-blue-26.3`, `2.1.0+sky-blue-1.21.1`, … (tiene que ser distinto en cada una).
    - Versiones del juego: los zips de `dist/26.3` → **26.3**; los de `dist/1.21.1` → **1.21** y **1.21.1**.
    - Loader: **Minecraft** (resource pack).
-   - Changelog: "2.1.0: solo cambia la interfaz (se quitan el sol y la luna); nuevo icono."
+   - Changelog: "2.1.0: nuevo icono y capturas nuevas."
 9. En **Moderation / AI disclosure**, marca la casilla de contenido generado con IA.
 10. Envía a revisión.
 

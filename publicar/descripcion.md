@@ -7,7 +7,7 @@ A cozy resource pack that recolors only Minecraft's interface (menus, inventorie
 
 ## English
 
-Cielo cute gives Minecraft's interface a soft, cozy makeover. Inventories, chests, furnaces, buttons and menus change from plain grey to the colors of your favorite sky, and each theme adds a little pattern to the menu background. Only the interface changes: blocks, items, mobs, the sky, the sun and the moon stay exactly as they are.
+Cielo cute gives Minecraft's interface a soft, cozy makeover. Inventories, chests, furnaces, buttons and menus change from plain grey to the colors of your favorite sky, and each theme adds a little pattern to the menu background. Blocks, items and mobs stay exactly as they are.
 
 ### What changes
 - **Every container screen**: your inventory, chests, furnaces, crafting table, anvil, brewing stand, villager trades and more. The bevels and slot shading are kept, only the colors change.
@@ -42,8 +42,6 @@ Each theme is a separate file. Download the one you like (or several) from the V
 To switch themes, just enable a different one. Only one Cielo cute theme should be active at a time.
 
 ### FAQ
-**Does it change the sky, the sun or the moon?** No. Cielo cute only changes the interface. The world looks exactly like vanilla.
-
 **Can I use it in videos or modpacks?** Yes. Credit with a link to this page is appreciated.
 
 **Will there be more themes?** Yes. Suggestions are welcome in the comments.
@@ -55,7 +53,7 @@ Made by ccrccne. The textures are recolors of Minecraft's original textures, gen
 
 ## Español
 
-Cielo cute le da a la interfaz de Minecraft un cambio suave y acogedor. Los inventarios, cofres, hornos, botones y menús pasan del gris a los colores de tu cielo favorito, y cada tema agrega un dibujito en el fondo de los menús. Solo cambia la interfaz: los bloques, objetos, criaturas, el cielo, el sol y la luna se quedan igual.
+Cielo cute le da a la interfaz de Minecraft un cambio suave y acogedor. Los inventarios, cofres, hornos, botones y menús pasan del gris a los colores de tu cielo favorito, y cada tema agrega un dibujito en el fondo de los menús. Los bloques, objetos y criaturas se quedan igual.
 
 ### Qué cambia
 - **Todas las pantallas de contenedores**: inventario, cofres, hornos, mesa de crafteo, yunque, soporte de pociones, aldeanos y más. Se conserva el relieve; solo cambian los colores.
@@ -84,8 +82,6 @@ Cielo cute le da a la interfaz de Minecraft un cambio suave y acogedor. Los inve
 3. Pásalo a la columna de la derecha y pulsa Listo.
 
 ### Preguntas frecuentes
-**¿Cambia el cielo, el sol o la luna?** No. Cielo cute solo cambia la interfaz; el mundo se ve igual que siempre.
-
 **¿Puedo usarlo en videos o modpacks?** Sí. Se agradece un enlace a esta página.
 
 ### Créditos

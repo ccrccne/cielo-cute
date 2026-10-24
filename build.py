@@ -5,7 +5,7 @@ Uso: python build.py <carpeta con una subcarpeta por versión: 26.3/assets/..., 
 Por cada tema de themes.py y cada versión:
 - tiñe los grises de la interfaz con la paleta del tema (el relieve de botones y casillas se mantiene),
 - pinta la casilla seleccionada, los corazones y el cuadro de descripciones,
-- decora el fondo de los menús con un dibujito repetido (solo cambia la interfaz: el cielo, el sol y la luna quedan como en el juego),
+- decora el fondo de los menús con un dibujito repetido,
 - crea el icono del paquete y lo guarda todo en dist/<versión>/cielo-cute-<tema>-<versión>.zip
 """
 import colorsys
