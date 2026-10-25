@@ -4,7 +4,7 @@ Uso: python build.py <carpeta con una subcarpeta por versión: 26.3/assets/..., 
 
 Por cada tema de themes.py y cada versión:
 - tiñe los grises de la interfaz con la paleta del tema (el relieve de botones y casillas se mantiene),
-- pinta la casilla seleccionada y el cuadro de descripciones (los corazones se quedan rojos),
+- pinta la casilla seleccionada y el cuadro de descripciones,
 - decora el fondo de los menús con un dibujito repetido,
 - crea el icono del paquete y lo guarda todo en dist/<versión>/<paquete>-<tema>-<versión>.zip
 Los temas claros son Cozy GUI y los oscuros (colección Cozy Nights) se publican aparte como Cozy GUI Dark.
@@ -154,7 +154,7 @@ def pack_icon(t):
     d.rectangle((5, 6, 26, 26), fill=c[198])
     d.line((5, 6, 25, 6), fill=c[255]); d.line((5, 6, 5, 25), fill=c[255])
     d.line((6, 26, 26, 26), fill=c[55]); d.line((26, 7, 26, 26), fill=c[55])
-    heart = (219, 37, 40)  # el rojo original de los corazones
+    heart = (219, 37, 40)
     for x, y in [(8, 8), (10, 8), (7, 9), (8, 9), (9, 9), (10, 9), (11, 9), (8, 10), (9, 10), (10, 10), (9, 11)]:
         d.point((x, y), fill=heart)
     d.point((8, 9), fill=(255, 255, 255))

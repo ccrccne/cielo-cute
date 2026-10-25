@@ -23,7 +23,7 @@ VANILLA = pathlib.Path.home() / ".gradle/caches/fabric-loom/26.3/minecraft-clien
 
 
 def tex(z, rel):
-    """La textura del paquete, o la original del juego si el paquete no la cambia (los corazones)."""
+    """La textura del paquete, o la original del juego si el paquete no la cambia."""
     name = f"assets/minecraft/textures/{rel}"
     if name not in z.namelist():
         z = zipfile.ZipFile(VANILLA)
