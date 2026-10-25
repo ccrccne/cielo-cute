@@ -10,7 +10,6 @@ Un paquete de texturas para Minecraft que cambia el gris de los menús por color
 - **Inventarios y contenedores**: el tuyo, cofres, hornos, mesas, yunque, aldeanos y demás. Se conserva el relieve; solo cambian los colores.
 - **Botones y menús**, con un fondo decorado según el tema (estrellas, corazones, flores, hojas, nubes, burbujas…).
 - **Barra rápida** del color del tema y **casilla seleccionada** en un color de acento.
-- **Corazones** a juego, también los del modo extremo.
 
 ## Los temas
 | Colección | Temas |

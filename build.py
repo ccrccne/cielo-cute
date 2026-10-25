@@ -4,7 +4,7 @@ Uso: python build.py <carpeta con una subcarpeta por versión: 26.3/assets/..., 
 
 Por cada tema de themes.py y cada versión:
 - tiñe los grises de la interfaz con la paleta del tema (el relieve de botones y casillas se mantiene),
-- pinta la casilla seleccionada, los corazones y el cuadro de descripciones,
+- pinta la casilla seleccionada y el cuadro de descripciones (los corazones se quedan rojos),
 - decora el fondo de los menús con un dibujito repetido,
 - crea el icono del paquete y lo guarda todo en dist/<versión>/<paquete>-<tema>-<versión>.zip
 Los temas claros son Cozy GUI y los oscuros (colección Cozy Nights) se publican aparte como Cozy GUI Dark.
@@ -21,13 +21,13 @@ from PIL import Image, ImageDraw
 from themes import THEMES
 
 # Nombre, prefijo de archivo y versión de cada paquete
-PRODUCTS = {"light": ("Cozy GUI", "cozy-gui", "2.1.1"), "dark": ("Cozy GUI Dark", "cozy-gui-dark", "1.0.1")}
+PRODUCTS = {"light": ("Cozy GUI", "cozy-gui", "2.2.0"), "dark": ("Cozy GUI Dark", "cozy-gui-dark", "1.1.0")}
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {
     "26.3": dict(mcmeta={"min_format": 97, "max_format": 97}, text_shader="gui"),
     "1.21.1": dict(mcmeta={"pack_format": 34}),
-    # 1.20.1 todavía guarda botones, barra rápida y corazones juntos en widgets.png e icons.png
+    # 1.20.1 todavía guarda botones y barra rápida juntos en widgets.png
     "1.20.1": dict(mcmeta={"pack_format": 15}, legacy=True),
 }
 GUI_LUM = [0, 55, 93, 139, 198, 255]
@@ -154,9 +154,7 @@ def pack_icon(t):
     d.rectangle((5, 6, 26, 26), fill=c[198])
     d.line((5, 6, 25, 6), fill=c[255]); d.line((5, 6, 5, 25), fill=c[255])
     d.line((6, 26, 26, 26), fill=c[55]); d.line((26, 7, 26, 26), fill=c[55])
-    hue, sat, light = t["heart"]
-    r, g, b = colorsys.hls_to_rgb(hue / 360, .62 + light / 3, min(.9 * sat + .1, 1))
-    heart = (round(r * 255), round(g * 255), round(b * 255))
+    heart = (219, 37, 40)  # el rojo original de los corazones
     for x, y in [(8, 8), (10, 8), (7, 9), (8, 9), (9, 9), (10, 9), (11, 9), (8, 10), (9, 10), (10, 10), (9, 11)]:
         d.point((x, y), fill=heart)
     d.point((8, 9), fill=(255, 255, 255))
@@ -197,7 +195,7 @@ def label_shader(label, version, src):
 
 # ---------- construcción ----------
 def legacy_gui(theme, gui_src, put):
-    """1.20.1: los mismos cambios, sobre las texturas antiguas (widgets.png, icons.png, options_background.png)."""
+    """1.20.1: los mismos cambios, sobre las texturas antiguas (widgets.png, options_background.png)."""
     btn = button_ramp(theme["gui"])
     for group in ["container", "advancements"]:
         for f in sorted((gui_src / group).rglob("*.png")):
@@ -215,13 +213,6 @@ def legacy_gui(theme, gui_src, put):
     selection = (0, 22, 24, 46)
     widgets.paste(tint(gui_src / "widgets.png", theme["accent"], ACCENT_LUM).crop(selection), selection[:2])
     put("gui/widgets.png", widgets)
-
-    # icons.png: solo las filas de corazones (normales y extremo) cambian de color
-    hue, sat, light = theme["heart"]
-    icons = Image.open(gui_src / "icons.png").convert("RGBA")
-    for box in [(16, 0, 256, 9), (16, 45, 256, 54)]:
-        icons.paste(hue_shift(icons.crop(box), hue, sat, light, reds_only=True), box[:2])
-    put("gui/icons.png", icons)
 
     # El juego oscurece el fondo de los menús a 1/4: se aclara antes para que se vea el color del tema
     base, motif, motif_color = theme["menu"]
@@ -253,10 +244,6 @@ def build(theme, version, src):
         put(f"gui/sprites/hud/{name}", tint(gui_src / "sprites/hud" / name, theme["gui"]))
     put("gui/sprites/hud/hotbar_selection.png", tint(gui_src / "sprites/hud/hotbar_selection.png", theme["accent"], ACCENT_LUM))
 
-    hue, sat, light = theme["heart"]
-    for f in sorted((gui_src / "sprites/hud/heart").glob("*.png")):
-        if f.stem.split("_")[0] in ("full", "half", "hardcore"):
-            put(f"gui/sprites/hud/heart/{f.name}", hue_shift(f, hue, sat, light, reds_only=True))
     for name in ["background.png", "frame.png"]:
         if (gui_src / "sprites/tooltip" / name).exists():  # 1.21.1 dibuja las descripciones sin textura
             put(f"gui/sprites/tooltip/{name}", hue_shift(gui_src / "sprites/tooltip" / name, theme["tooltip"]))

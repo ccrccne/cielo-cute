@@ -14,7 +14,6 @@ Cozy GUI Dark gives Minecraft's interface soft dark colors that are easy on the 
 - **Light inventory titles** ("Inventory", "Chest", "Crafting"…), so they read well on the dark panels.
 - **Buttons, sliders and menus**, with a matching background pattern (stars, moons, hearts, flowers, leaves, bubbles, sparkles…).
 - **Hotbar** in the theme color, and the selected slot glows in an accent color.
-- **Hearts** in a soft tone that matches the theme (normal and hardcore).
 - Toasts and tooltips to match (tooltips on 26.3).
 
 ### 18 dark themes
@@ -54,7 +53,6 @@ Cozy GUI Dark le da a la interfaz de Minecraft colores oscuros suaves para la vi
 - **Títulos claros en los inventarios**, para que se lean bien sobre el fondo oscuro.
 - **Botones, deslizadores y menús**, con un fondo decorado (estrellas, lunas, corazones, flores, hojas, burbujas, destellos…).
 - **Barra rápida** del color del tema, con la casilla seleccionada en un color de acento.
-- **Corazones** en un tono que combina con el tema.
 - Avisos y descripciones de objetos a juego (descripciones en 26.3).
 
 ### 18 temas oscuros

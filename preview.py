@@ -19,8 +19,15 @@ FONT = "C:/Windows/Fonts/segoeuib.ttf"
 FONT_R = "C:/Windows/Fonts/segoeui.ttf"
 
 
+VANILLA = pathlib.Path.home() / ".gradle/caches/fabric-loom/26.3/minecraft-client.jar"
+
+
 def tex(z, rel):
-    return Image.open(io.BytesIO(z.read(f"assets/minecraft/textures/{rel}"))).convert("RGBA")
+    """La textura del paquete, o la original del juego si el paquete no la cambia (los corazones)."""
+    name = f"assets/minecraft/textures/{rel}"
+    if name not in z.namelist():
+        z = zipfile.ZipFile(VANILLA)
+    return Image.open(io.BytesIO(z.read(name))).convert("RGBA")
 
 
 def card(t):

@@ -1,7 +1,7 @@
 # Cozy GUI
 
 **Resumen (una frase, sin formato):**
-A cozy resource pack that recolors only Minecraft's interface (menus, inventories, hotbar and hearts) in 18 pastel and night-sky color themes.
+A cozy resource pack that recolors only Minecraft's interface (menus, inventories and hotbar) in 18 pastel and night-sky color themes.
 
 ---
 
@@ -13,7 +13,6 @@ Cozy GUI gives Minecraft's interface a soft, cozy makeover. Inventories, chests,
 - **Every container screen**: your inventory, chests, furnaces, crafting table, anvil, brewing stand, villager trades and more. The bevels and slot shading are kept, only the colors change.
 - **Buttons, sliders and menus**, with a matching background pattern (stars, hearts, flowers, leaves, clouds, bubbles…).
 - **Hotbar** in the theme color, and the selected slot glows in an accent color.
-- **Hearts** in a soft tone that matches the theme (normal and hardcore).
 - Toasts and tooltips to match (tooltips on 26.3).
 
 ### 18 themes in 5 collections
@@ -61,7 +60,6 @@ Cozy GUI le da a la interfaz de Minecraft un cambio suave y acogedor. Los invent
 - **Todas las pantallas de contenedores**: inventario, cofres, hornos, mesa de crafteo, yunque, soporte de pociones, aldeanos y más. Se conserva el relieve; solo cambian los colores.
 - **Botones, deslizadores y menús**, con un fondo decorado (estrellas, corazones, flores, hojas, nubes, burbujas…).
 - **Barra rápida** del color del tema, con la casilla seleccionada en un color de acento.
-- **Corazones** en un tono que combina con el tema.
 - Avisos y descripciones de objetos a juego (descripciones en 26.3).
 
 ### 18 temas en 5 colecciones
