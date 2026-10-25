@@ -1,7 +1,7 @@
 # Cozy GUI
 
 **Resumen (una frase, sin formato):**
-A cozy resource pack that recolors only Minecraft's interface (menus, inventories, hotbar and hearts) in 36 pastel and dark color themes.
+A cozy resource pack that recolors only Minecraft's interface (menus, inventories, hotbar and hearts) in 18 pastel and night-sky color themes.
 
 ---
 
@@ -15,9 +15,8 @@ Cozy GUI gives Minecraft's interface a soft, cozy makeover. Inventories, chests,
 - **Hotbar** in the theme color, and the selected slot glows in an accent color.
 - **Hearts** in a soft tone that matches the theme (normal and hardcore).
 - Toasts and tooltips to match (tooltips on 26.3).
-- **Dark themes** (Cozy Nights): soft dark colors that are easy on the eyes at night, with light titles.
 
-### 36 themes in 6 collections
+### 18 themes in 5 collections
 | Collection | Themes |
 |---|---|
 | Pastel Dreams | Sky Blue, Cotton Candy, Lavender Dream, Mint Breeze, Honey Butter, Cloud Nine, Ocean Bubbles |
@@ -25,16 +24,17 @@ Cozy GUI gives Minecraft's interface a soft, cozy makeover. Inventories, chests,
 | Fantasy | Mermaid Opal, Candy Rainbow, Cherry Blossom |
 | Minimal Elegance | Rose Pearl, Latte |
 | Golden Hour | Peach Sunset, First Light |
-| Cozy Nights (dark) | Midnight Sky, Lilac Night, Deep Ocean, Cocoa, Forest Night, Midnight Cherry, Charcoal Rose, Cosmic Plum, Ink & Gold, Moonlit Mint, Twilight Peach, Galaxy Berry, Velvet Rose, Storm Blue, Witchy Moss, Nebula, Cozy Ember, Frosted Night |
 
 Each theme is a separate file. Download the one you like (or several) from the Versions / Files tab.
+
+Looking for dark themes? Check out **Cozy GUI Dark**, with 18 soft dark themes.
 
 ### Compatibility
 - **Java Edition 26.3** and **1.21 / 1.21.1**. Pick the file whose name ends in your version.
 - No mods needed. Tested in-game on 26.3 (vanilla resources + Fabric). Other loaders and Sodium/Iris don't touch these textures, so it should work there too. Screens added by mods keep their own colors.
 - Not for Bedrock Edition.
 - If another pack also changes the interface, put Cozy GUI above it in the list.
-- Every theme is checked for readable text. The dark themes also brighten the inventory titles so they stay easy to read.
+- Inventory titles are drawn in dark grey by the game; every theme keeps the panel light enough for them to stay readable, and buttons dark enough for white text.
 
 ### Installation
 1. Download the .zip of the theme you want. Don't unzip it.
@@ -63,9 +63,8 @@ Cozy GUI le da a la interfaz de Minecraft un cambio suave y acogedor. Los invent
 - **Barra rápida** del color del tema, con la casilla seleccionada en un color de acento.
 - **Corazones** en un tono que combina con el tema.
 - Avisos y descripciones de objetos a juego (descripciones en 26.3).
-- **Temas oscuros** (Cozy Nights): colores oscuros suaves para la vista, con títulos claros.
 
-### 36 temas en 6 colecciones
+### 18 temas en 5 colecciones
 | Colección | Temas |
 |---|---|
 | Pastel Dreams | Sky Blue, Cotton Candy, Lavender Dream, Mint Breeze, Honey Butter, Cloud Nine, Ocean Bubbles |
@@ -73,7 +72,8 @@ Cozy GUI le da a la interfaz de Minecraft un cambio suave y acogedor. Los invent
 | Fantasy | Mermaid Opal, Candy Rainbow, Cherry Blossom |
 | Minimal Elegance | Rose Pearl, Latte |
 | Golden Hour | Peach Sunset, First Light |
-| Cozy Nights (oscuros) | Midnight Sky, Lilac Night, Deep Ocean, Cocoa, Forest Night, Midnight Cherry, Charcoal Rose, Cosmic Plum, Ink & Gold, Moonlit Mint, Twilight Peach, Galaxy Berry, Velvet Rose, Storm Blue, Witchy Moss, Nebula, Cozy Ember, Frosted Night |
+
+¿Buscas temas oscuros? Mira **Cozy GUI Dark**, con 18 temas oscuros suaves.
 
 ### Compatibilidad
 - **Java Edition 26.3** y **1.21 / 1.21.1**. Elige el archivo que termina con tu versión.

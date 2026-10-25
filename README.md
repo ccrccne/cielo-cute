@@ -2,16 +2,15 @@
 
 # Cozy GUI
 
-Un paquete de texturas para Minecraft que cambia el gris de los menús por colores de cielo. Ahora en **36 temas**, claros y oscuros, cada uno con un dibujito en el fondo de los menús. Los bloques y los objetos se quedan igual.
+Un paquete de texturas para Minecraft que cambia el gris de los menús por colores de cielo. Ahora en **18 temas**, cada uno con un dibujito en el fondo de los menús. Los bloques y los objetos se quedan igual.
 
-![Las 36 variantes](images/variantes.png)
+![Las variantes](images/variantes.png)
 
 ## Qué cambia
 - **Inventarios y contenedores**: el tuyo, cofres, hornos, mesas, yunque, aldeanos y demás. Se conserva el relieve; solo cambian los colores.
 - **Botones y menús**, con un fondo decorado según el tema (estrellas, corazones, flores, hojas, nubes, burbujas…).
 - **Barra rápida** del color del tema y **casilla seleccionada** en un color de acento.
 - **Corazones** a juego, también los del modo extremo.
-- **Temas oscuros**: además aclaran los títulos de los inventarios para que se lean bien.
 
 ## Los temas
 | Colección | Temas |
@@ -21,7 +20,8 @@ Un paquete de texturas para Minecraft que cambia el gris de los menús por color
 | Fantasy | Mermaid Opal, Candy Rainbow, Cherry Blossom |
 | Minimal Elegance | Rose Pearl, Latte |
 | Golden Hour | Peach Sunset, First Light |
-| Cozy Nights (oscuros) | Midnight Sky, Lilac Night, Deep Ocean, Cocoa, Forest Night, Midnight Cherry, Charcoal Rose, Cosmic Plum, Ink & Gold, Moonlit Mint, Twilight Peach, Galaxy Berry, Velvet Rose, Storm Blue, Witchy Moss, Nebula, Cozy Ember, Frosted Night |
+
+Los temas oscuros se publican aparte como **Cozy GUI Dark** (18 temas, colección Cozy Nights), generados con los mismos scripts.
 
 Cada tema es un zip aparte. Para cambiar de tema, activa otro en el menú de paquetes (uno a la vez).
 

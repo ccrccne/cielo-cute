@@ -6,7 +6,8 @@ Por cada tema de themes.py y cada versión:
 - tiñe los grises de la interfaz con la paleta del tema (el relieve de botones y casillas se mantiene),
 - pinta la casilla seleccionada, los corazones y el cuadro de descripciones,
 - decora el fondo de los menús con un dibujito repetido,
-- crea el icono del paquete y lo guarda todo en dist/<versión>/cozy-gui-<tema>-<versión>.zip
+- crea el icono del paquete y lo guarda todo en dist/<versión>/<paquete>-<tema>-<versión>.zip
+Los temas claros son Cozy GUI y los oscuros (colección Cozy Nights) se publican aparte como Cozy GUI Dark.
 """
 import colorsys
 import json
@@ -19,7 +20,8 @@ from PIL import Image, ImageDraw
 
 from themes import THEMES
 
-PACK_VERSION = "2.2.0"
+# Nombre, prefijo de archivo y versión de cada paquete
+PRODUCTS = {"light": ("Cozy GUI", "cozy-gui", "2.1.1"), "dark": ("Cozy GUI Dark", "cozy-gui-dark", "1.0.0")}
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {
@@ -125,6 +127,15 @@ def menu_tile(base, motif, motif_color, alpha, motif_alpha):
     return im
 
 
+def product(theme):
+    return PRODUCTS["dark" if theme["collection"] == "nights" else "light"]
+
+
+def zip_name(theme, version):
+    _, prefix, pack_version = product(theme)
+    return f"{prefix}-{theme['id']}-{pack_version}+{version}.zip"
+
+
 def pack_icon(t):
     """Una ventanita de inventario con los colores del tema, sobre el fondo de sus menús."""
     n = 32
@@ -226,14 +237,14 @@ def build(theme, version, src):
         if rel[:-len(".mcmeta")] in files:
             extra[rel] = f.read_bytes()
 
-    desc = f"§bCozy GUI §e✦ §f{theme['name']}\n§7por ccrccne"
+    desc = f"§b{product(theme)[0]} §e✦ §f{theme['name']}\n§7por ccrccne"
     mcmeta = {"pack": {"description": desc, **VERSIONS[version]["mcmeta"]}}
-    out = DIST / version / f"cozy-gui-{theme['id']}-{PACK_VERSION}+{version}.zip"
+    out = DIST / version / zip_name(theme, version)
     out.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("pack.mcmeta", json.dumps(mcmeta, ensure_ascii=False, indent=4))
         z.write(ROOT / "LICENSE", "LICENSE.txt")
-        z.writestr("CREDITOS.txt", "Cozy GUI por ccrccne - https://ccrccne.github.io\n"
+        z.writestr("CREDITOS.txt", f"{product(theme)[0]} por ccrccne - https://ccrccne.github.io\n"
                    "Texturas basadas en las originales de Minecraft (Mojang), recoloreadas con build.py.\n"
                    "No es un producto oficial de Minecraft. No está aprobado ni asociado con Mojang o Microsoft.\n")
         icon = pack_icon(theme)
