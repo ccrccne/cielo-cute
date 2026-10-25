@@ -19,11 +19,11 @@ from PIL import Image, ImageDraw
 
 from themes import THEMES
 
-PACK_VERSION = "2.1.1"
+PACK_VERSION = "2.2.0"
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {
-    "26.3": dict(mcmeta={"min_format": 97, "max_format": 97}),
+    "26.3": dict(mcmeta={"min_format": 97, "max_format": 97}, text_shader="gui"),
     "1.21.1": dict(mcmeta={"pack_format": 34}),
 }
 GUI_LUM = [0, 55, 93, 139, 198, 255]
@@ -158,6 +158,29 @@ def pack_icon(t):
     return im.resize((128, 128), Image.NEAREST)
 
 
+def label_shader(label, version, src):
+    """Temas oscuros: el juego pinta los títulos de los menús con un gris fijo (#404040) que no se lee sobre fondo oscuro.
+    Se modifica el shader de texto para cambiar solo ese gris por el color claro del tema, y solo en los menús."""
+    l = ", ".join(f"{v / 255:.4f}" for v in label)
+    is_grey = "all(lessThan(abs(Color.rgb - vec3(64.0 / 255.0)), vec3(0.01)))"
+    if VERSIONS[version].get("text_shader") == "gui":
+        rel = "assets/minecraft/shaders/core/text.vsh"
+        code = (src / rel).read_text(encoding="utf-8")
+        anchor = "    texCoord0 = UV0;"
+        assert anchor in code
+        code = code.replace(anchor, f"#ifdef IS_GUI\n    if ({is_grey}) vertexColor.rgb = vec3({l});\n#endif\n{anchor}")
+    else:
+        # 1.21.1 usa el mismo shader para el mundo y los menús; los menús se dibujan sin perspectiva (ProjMat[2][3] == 0)
+        rel = "assets/minecraft/shaders/core/rendertype_text.vsh"
+        code = (src / rel).read_text(encoding="utf-8")
+        anchor = "    vertexColor = Color * texelFetch(Sampler2, UV2 / 16, 0);"
+        assert anchor in code
+        grey = is_grey.replace("Color.rgb", "color.rgb")
+        code = code.replace(anchor, f"    vec4 color = Color;\n    if (ProjMat[2][3] == 0.0 && {grey}) color.rgb = vec3({l});\n"
+                            "    vertexColor = color * texelFetch(Sampler2, UV2 / 16, 0);")
+    return {rel: code.encode("utf-8")}
+
+
 # ---------- construcción ----------
 def build(theme, version, src):
     gui_src = src / "assets/minecraft/textures/gui"
@@ -196,6 +219,8 @@ def build(theme, version, src):
 
     # Las .mcmeta (cómo se estiran los botones y paneles) se copian tal cual
     extra = {}
+    if theme.get("label"):
+        extra.update(label_shader(theme["label"], version, src))
     for f in gui_src.rglob("*.png.mcmeta"):
         rel = f"assets/minecraft/textures/gui/{f.relative_to(gui_src).as_posix()}"
         if rel[:-len(".mcmeta")] in files:
@@ -224,9 +249,10 @@ def build(theme, version, src):
 def check(theme):
     """Avisos de legibilidad: los títulos de los inventarios son gris oscuro fijo (#404040)."""
     panel = ramp(theme["gui"], GUI_LUM, 198)
+    title = theme.get("label", (64, 64, 64))  # los temas oscuros cambian ese gris por un color claro
     warn = []
-    if contrast(panel, (64, 64, 64)) < 4.5:
-        warn.append(f"títulos poco legibles ({contrast(panel, (64, 64, 64)):.1f})")
+    if contrast(panel, title) < 4.5:
+        warn.append(f"títulos poco legibles ({contrast(panel, title):.1f})")
     btn = ramp(button_ramp(theme["gui"]), GUI_LUM, 112)
     if contrast(btn, (255, 255, 255)) < 3.0:
         warn.append("texto de botones poco legible")
