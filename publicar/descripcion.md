@@ -30,8 +30,8 @@ Each theme is a separate file. Download the one you like (or several) from the V
 Looking for dark themes? Check out **Cozy GUI Dark**, with 18 soft dark themes.
 
 ### Compatibility
-- **Java Edition 26.3** and **1.21 / 1.21.1**. Pick the file whose name ends in your version.
-- No mods needed. Tested in-game on 26.3 (vanilla resources + Fabric). Other loaders and Sodium/Iris don't touch these textures, so it should work there too. Screens added by mods keep their own colors.
+- **Java Edition 26.3**, **1.21 / 1.21.1** and **1.20 / 1.20.1**. Pick the file whose name ends in your version.
+- No mods needed. Works with Forge, NeoForge, Fabric and OptiFine. Tested in-game on 26.3 and 1.20.1. Screens added by mods keep their own colors.
 - Not for Bedrock Edition.
 - If another pack also changes the interface, put Cozy GUI above it in the list.
 - Inventory titles are drawn in dark grey by the game; every theme keeps the panel light enough for them to stay readable, and buttons dark enough for white text.
@@ -76,8 +76,8 @@ Cozy GUI le da a la interfaz de Minecraft un cambio suave y acogedor. Los invent
 ¿Buscas temas oscuros? Mira **Cozy GUI Dark**, con 18 temas oscuros suaves.
 
 ### Compatibilidad
-- **Java Edition 26.3** y **1.21 / 1.21.1**. Elige el archivo que termina con tu versión.
-- No necesita mods. Probado en el juego en 26.3 (con Fabric). Las pantallas que agregan otros mods mantienen sus colores.
+- **Java Edition 26.3**, **1.21 / 1.21.1** y **1.20 / 1.20.1**. Elige el archivo que termina con tu versión.
+- No necesita mods. Funciona con Forge, NeoForge, Fabric y OptiFine. Probado en el juego en 26.3 y 1.20.1. Las pantallas que agregan otros mods mantienen sus colores.
 - No es para Bedrock.
 
 ### Instalación

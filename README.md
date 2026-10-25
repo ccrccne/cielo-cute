@@ -26,11 +26,11 @@ Los temas oscuros se publican aparte como **Cozy GUI Dark** (18 temas, colecció
 Cada tema es un zip aparte. Para cambiar de tema, activa otro en el menú de paquetes (uno a la vez).
 
 ## Instalación
-1. Descarga el zip del tema que quieras desde [Releases](https://github.com/ccrccne/cozy-gui/releases). El nombre termina en tu versión: `+26.3` o `+1.21.1`.
+1. Descarga el zip del tema que quieras desde [Releases](https://github.com/ccrccne/cozy-gui/releases). El nombre termina en tu versión: `+26.3`, `+1.21.1` o `+1.20.1`.
 2. En Minecraft ve a **Opciones → Paquetes de recursos → Abrir carpeta de paquetes** y pon el zip ahí, sin descomprimir.
 3. Pásalo a la columna de la derecha y pulsa **Listo**.
 
-Funciona en **Minecraft 26.3** y **1.21 / 1.21.1** (Java).
+Funciona en **Minecraft 26.3**, **1.21 / 1.21.1** y **1.20 / 1.20.1** (Java), con Forge, NeoForge, Fabric u OptiFine.
 
 ## Cómo se hace
 Todo sale de dos scripts de Python (necesitan Pillow y NumPy):
@@ -39,7 +39,7 @@ Todo sale de dos scripts de Python (necesitan Pillow y NumPy):
 - [`preview.py`](preview.py): arma las tarjetas de vista previa.
 
 ```bash
-python build.py <carpeta con 26.3/assets/... y 1.21.1/assets/...>
+python build.py <carpeta con 26.3/assets/..., 1.21.1/assets/... y 1.20.1/assets/...>
 ```
 
 ## Licencia

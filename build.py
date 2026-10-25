@@ -21,12 +21,14 @@ from PIL import Image, ImageDraw
 from themes import THEMES
 
 # Nombre, prefijo de archivo y versión de cada paquete
-PRODUCTS = {"light": ("Cozy GUI", "cozy-gui", "2.1.1"), "dark": ("Cozy GUI Dark", "cozy-gui-dark", "1.0.0")}
+PRODUCTS = {"light": ("Cozy GUI", "cozy-gui", "2.1.1"), "dark": ("Cozy GUI Dark", "cozy-gui-dark", "1.0.1")}
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 VERSIONS = {
     "26.3": dict(mcmeta={"min_format": 97, "max_format": 97}, text_shader="gui"),
     "1.21.1": dict(mcmeta={"pack_format": 34}),
+    # 1.20.1 todavía guarda botones, barra rápida y corazones juntos en widgets.png e icons.png
+    "1.20.1": dict(mcmeta={"pack_format": 15}, legacy=True),
 }
 GUI_LUM = [0, 55, 93, 139, 198, 255]
 ACCENT_LUM = [0, 95, 160, 215, 255]
@@ -98,7 +100,7 @@ def tint(path, colors, points=GUI_LUM, only_grey=True):
 
 
 def hue_shift(path, hue, sat_scale=1.0, light_add=0.0, reds_only=False):
-    im = Image.open(path).convert("RGBA")
+    im = path if isinstance(path, Image.Image) else Image.open(path).convert("RGBA")
     px = im.load()
     for y in range(im.height):
         for x in range(im.width):
@@ -173,7 +175,8 @@ def label_shader(label, version, src):
     """Temas oscuros: el juego pinta los títulos de los menús con un gris fijo (#404040) que no se lee sobre fondo oscuro.
     Se modifica el shader de texto para cambiar solo ese gris por el color claro del tema, y solo en los menús."""
     l = ", ".join(f"{v / 255:.4f}" for v in label)
-    is_grey = "all(lessThan(abs(Color.rgb - vec3(64.0 / 255.0)), vec3(0.01)))"
+    # Solo el gris exacto de los títulos: la sombra del texto blanco (#3F3F3F) queda a 1/255 y no se toca
+    is_grey = "all(lessThan(abs(Color.rgb - vec3(64.0 / 255.0)), vec3(0.5 / 255.0)))"
     if VERSIONS[version].get("text_shader") == "gui":
         rel = "assets/minecraft/shaders/core/text.vsh"
         code = (src / rel).read_text(encoding="utf-8")
@@ -193,12 +196,49 @@ def label_shader(label, version, src):
 
 
 # ---------- construcción ----------
+def legacy_gui(theme, gui_src, put):
+    """1.20.1: los mismos cambios, sobre las texturas antiguas (widgets.png, icons.png, options_background.png)."""
+    btn = button_ramp(theme["gui"])
+    for group in ["container", "advancements"]:
+        for f in sorted((gui_src / group).rglob("*.png")):
+            if "backgrounds" not in f.parts:  # los fondos de logros son bloques del mundo
+                put(f"gui/{f.relative_to(gui_src).as_posix()}", tint(f, theme["gui"]))
+    for name in ["recipe_book.png", "toasts.png", "tab_button.png"]:
+        put(f"gui/{name}", tint(gui_src / name, theme["gui"]))
+    put("gui/slider.png", tint(gui_src / "slider.png", btn))
+
+    # widgets.png: barra rápida arriba, casilla seleccionada, botones y botones de candado
+    widgets = tint(gui_src / "widgets.png", theme["gui"])
+    as_buttons = tint(gui_src / "widgets.png", btn)
+    for box in [(0, 46, 200, 106), (0, 106, 20, 146), (0, 146, 40, 206)]:
+        widgets.paste(as_buttons.crop(box), box[:2])
+    selection = (0, 22, 24, 46)
+    widgets.paste(tint(gui_src / "widgets.png", theme["accent"], ACCENT_LUM).crop(selection), selection[:2])
+    put("gui/widgets.png", widgets)
+
+    # icons.png: solo las filas de corazones (normales y extremo) cambian de color
+    hue, sat, light = theme["heart"]
+    icons = Image.open(gui_src / "icons.png").convert("RGBA")
+    for box in [(16, 0, 256, 9), (16, 45, 256, 54)]:
+        icons.paste(hue_shift(icons.crop(box), hue, sat, light, reds_only=True), box[:2])
+    put("gui/icons.png", icons)
+
+    # El juego oscurece el fondo de los menús a 1/4: se aclara antes para que se vea el color del tema
+    base, motif, motif_color = theme["menu"]
+    bright = tuple(min(255, v * 4) for v in base)
+    put("gui/options_background.png", menu_tile(bright, motif, motif_color, 255, 255))
+
+
 def build(theme, version, src):
     gui_src = src / "assets/minecraft/textures/gui"
     files = {}
 
     def put(rel, im):
         files[f"assets/minecraft/textures/{rel}"] = im
+
+    if VERSIONS[version].get("legacy"):
+        legacy_gui(theme, gui_src, put)
+        return write_pack(theme, version, src, gui_src, files)
 
     btn = button_ramp(theme["gui"])
     for group in GROUPS:
@@ -227,7 +267,10 @@ def build(theme, version, src):
     list_base = tuple(round(v * .7) for v in base)
     put("gui/menu_list_background.png", menu_tile(list_base, motif, motif_color, 150, 110))
     put("gui/inworld_menu_list_background.png", menu_tile(list_base, motif, motif_color, 130, 100))
+    return write_pack(theme, version, src, gui_src, files)
 
+
+def write_pack(theme, version, src, gui_src, files):
     # Las .mcmeta (cómo se estiran los botones y paneles) se copian tal cual
     extra = {}
     if theme.get("label"):

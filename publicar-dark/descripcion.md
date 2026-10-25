@@ -25,8 +25,8 @@ Each theme is a separate file. Download the one you like (or several) from the V
 Looking for light pastel themes? Check out **Cozy GUI**.
 
 ### Compatibility
-- **Java Edition 26.3** and **1.21 / 1.21.1**. Pick the file whose name ends in your version.
-- No mods needed. Tested in-game on 26.3 (vanilla resources + Fabric). Screens added by mods keep their own colors.
+- **Java Edition 26.3**, **1.21 / 1.21.1** and **1.20 / 1.20.1**. Pick the file whose name ends in your version.
+- No mods needed. Works with Forge, NeoForge, Fabric and OptiFine. Tested in-game on 26.3 and 1.20.1. Screens added by mods keep their own colors.
 - Not for Bedrock Edition.
 - If another pack also changes the interface, put Cozy GUI Dark above it in the list.
 
@@ -63,8 +63,8 @@ Midnight Sky, Lilac Night, Deep Ocean, Cocoa, Forest Night, Midnight Cherry, Cha
 ¿Buscas temas claros en colores pastel? Mira **Cozy GUI**.
 
 ### Compatibilidad
-- **Java Edition 26.3** y **1.21 / 1.21.1**. Elige el archivo que termina con tu versión.
-- No necesita mods. Probado en el juego en 26.3 (con Fabric). Las pantallas que agregan otros mods mantienen sus colores.
+- **Java Edition 26.3**, **1.21 / 1.21.1** y **1.20 / 1.20.1**. Elige el archivo que termina con tu versión.
+- No necesita mods. Funciona con Forge, NeoForge, Fabric y OptiFine. Probado en el juego en 26.3 y 1.20.1. Las pantallas que agregan otros mods mantienen sus colores.
 - No es para Bedrock.
 
 ### Instalación
